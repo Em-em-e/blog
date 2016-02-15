@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+ 
+ <struts>
+ 	<package name="blog" namespace="/" extends="json-default">
+ 	<!-- http://ip:port/appname/namespace/actionName.action -->
+ 	<!-- http://ip:port/appname/day01/hello.action -->
+ 	
+ 		<!-- Message action -->
+ 		<action name="moodlist" class="com.coderliang.action.MessageAction" >
+ 			<result name="success">/WEB-INF/jsp/moodlist.jsp</result>
+ 		</action>
+ 	<!-- 	<action name="listmessage" class="com.coderliang.action.MessageAction">
+ 			<result name="success">/WEB-INF/jsp/listMessage.jsp</result>
+ 		</action> -->
+ 		
+ 		<!-- 跳转登陆页面 -->
+ 		<action name="loginform" class="">
+ 			<result name="success">/login/index.jsp</result>
+ 		</action>
+ 		
+ 		<!-- 登陆 -->
+ 		<action name="login" class="com.coderliang.action.LoginAction">
+ 			<result name="success">/WEB-INF/jsp/manager.jsp</result>
+ 			<result name="fail">/login/index.jsp</result>
+ 		</action>
+ 		
+ 		<!-- 退出登录 -->
+ 		<action name="loginout" class="com.coderliang.action.LoginAction" method="loginOut">
+ 			<result name="success" type="redirectAction">/login/index.jsp</result>
+ 		</action>
+ 		
+ 		<!-- 验证码获取Action -->
+ 		<action name="check_code" class="com.coderliang.action.CheckCode">
+ 			<result name="success" type="stream">
+ 				<param name="inputName" >sos</param>  <!-- jsp页面通过OGNL表达式"sos"访问 -->
+ 				<param name="contentType">image/jpg</param>
+ 			</result>
+ 		</action>
+ 		
+ 		<!--  -->
+ 	</package>
+ 	
+  </struts> 
+ 
+ 

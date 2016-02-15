@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CODER-LI的博客</title>
+    <meta name="keywords" content="个人博客,李亮个人博客,李亮" />
+    <meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/share.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/modernizr.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header>
+    <div id="logo"><a href="/"></a></div>
+    <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span><span class="en">Protal</span></a><a href="about.html"><span>关于我</span><span class="en">About</span></a><a href="moodlist.action"><span>碎言碎语</span><span class="en">Doing</span></a><a href="share.html"><span>模板分享</span><span class="en">Share</span></a><a href="knowledge.html"><span>学无止境</span><span class="en">Learn</span></a><a href="book.html"><span>留言版</span><span class="en">Gustbook</span></a>
+  </nav>
+</header>
+<article class="blogs">
+    <h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“文章”也要和同样喜欢它的人一起分享。 </span><a href="/" class="n1">网站首页</a><a href="/" class="n2">文章分享</a></h1>
+    <div class="newblog left">
+        <h1 class="c_titile">【维护管理】阿里云Linux服务器下配置tomcat详解 </h1>
+        <p class="box_c"><span class="d_time">发布时间：2015-11-09 </span><span> 编辑：<a href="http://user.qzone.qq.com/731556624/">李亮 </a></span></p><br><br>
+
+            <div class="markdown_views"><p>前段时间在阿里云申请了个云服务器，配置了半天终于把自己的网站搭建成功了，在这里我把自己配置安装过程总结后跟大家分享一下，相互学习。</p>
+                <p><strong>一、文件准备：</strong> <br>
+                    1. 远程登录阿里云Linux系统的工具putty <a href="http://www.pc6.com/softview/SoftView_106764.html">下载地址</a> <br>
+                    2. FTP工具 filezilla <a href="http://download.pchome.net/internet/ftp/detail-12867.html">下载地址</a> <br>
+                    3. jdk-7u79-linux-x64.tar.gz  <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">下载地址</a> 配置tomcat之前必须配置好jdk环境 。注意下载jdk的版本，跟云平台系统兼容 <br>
+                    4. apache-tomcat-7.0.65.tar.gz  <a href="http://tomcat.apache.org/download-70.cgi">下载地址</a></p>
+                <p><strong>二、开始安装</strong></p>
+                <p>1、安装jdk <br>
+                    解压putty工具，运行putty.exe出现如下界面，ip地址是云平台给你的公网ip，其他全都默认，点击打开，第一次连接会有提示，确定就行 <br>
+                    <img src="http://img.blog.csdn.net/20151114195654224" alt="这里写图片描述" title=""></p>
+                <p>然后输入云平台提供的实例用户名和密码，一般是root，密码是你创建实例时设置的密码，如果没有设置，去云控制管理台重置一下密码就行。登陆成功如下： <br>
+                    <img src="http://img.blog.csdn.net/20151114200209883" alt="这里写图片描述" title=""></p>
+                <p>输入密码时没有显示，登陆后没有图形界面，所以必须用命令行完成接下来的工作。</p>
+                <p>打开filezilla工具，填写公网ip和刚刚登陆Linux系统的用户名和密码，端口号22 <br>
+                    <img src="http://img.blog.csdn.net/20151114200845421" alt="这里写图片描述" title=""> <br>
+                    上面的是文件目录，下面是目录下的文件，直接将下载好的jdk和tomcat的tar.gz文件拖到opt目录下，然后右键重命名（方便后面解压安装）</p>
+                <p>在putty里执行下面命令来解压安装jdk：</p>
+                <pre class="prettyprint"><code class=" hljs avrasm">tar -zxvf /opt/jdk<span class="hljs-preprocessor">.tar</span><span class="hljs-preprocessor">.gz</span>   <span class="hljs-preprocessor">#jdk.tar.gz是你修改后的文件名</span></code></pre>
+                <p>成功后opt文件夹下会出现解压出来的文件夹jdk1.7.0_25（我的是这个文件夹，可在ftp里面刷新后可以看到）</p>
+                <p>然后配置环境变量，执行如下命令：</p>
+                <pre class="prettyprint">
+                    export JAVA_HOME=/opt/jdk1.7.0_25  #jdk.tar.gz是你安装后的文件夹名称<br>
+                    export PATH=$JAVA_HOME/bin:$PATH<br>
+                    export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar<br>
+                </pre>
+                <p>执行下面命令让配置立刻生效：</p>
+                <pre class="prettyprint"><code class=" hljs bash"><span class="hljs-built_in">source</span> /etc/proflie</code></pre>
+                <p>以上两步没提示错误就代表执行成功，接下来测试安装和配置是否成功：</p>
+                <pre class="prettyprint"><code class=" hljs livecodeserver">java -<span class="hljs-built_in">version</span></code></pre>
+                <p>出现下面提示说明安装配置成功： <br>
+                    <pre class="prettyprint">
+                    [root@iZ94umsjcwbZ opt]# java -version <br>
+                    java version “1.7.0_25” <br>
+                    Java(TM) SE Runtime Environment (build 1.7.0_25-b15) <br>
+                    Java HotSpot(TM) 64-Bit Server VM (build 23.25-b01, mixed mode) <br>
+                    [root@iZ94umsjcwbZ opt]#</p>
+                    </pre>
+
+                <p>2、安装和配置tomcat <br>
+                    接下来很简单了，安装并解压tomcat，最后开启服务就行了</p>
+                <p>同上面一样执行如下命令安装tomcat：</p>
+                <pre class="prettyprint"><code class=" hljs avrasm">tar -zxvf /opt/tomcat<span class="hljs-preprocessor">.tar</span><span class="hljs-preprocessor">.gz</span>  <span class="hljs-preprocessor">#tomcat.tar.gz是你上传的tomcat文件名</span></code></pre>
+                <p>安装完成后开启tomcat服务：</p>
+                <pre class="prettyprint"><code class=" hljs avrasm">/opt/tomcat/bin/startup<span class="hljs-preprocessor">.sh</span>  <span class="hljs-preprocessor">#tomcat是你安装解压后的文件夹名称</span></code></pre>
+                <p>成功后如下： <br>
+                    <pre class="prettyprint">
+                    [root@iZ94umsjcwbZ opt]# /opt/tomcat/bin/startup.sh <br>
+                    Using CATALINA_BASE:   /opt/tomcat <br>
+                    Using CATALINA_HOME:   /opt/tomcat <br>
+                    Using CATALINA_TMPDIR: /opt/tomcat/temp <br>
+                    Using JRE_HOME:        /opt/jdk1.7.0_25 <br>
+                    Using CLASSPATH:       /opt/tomcat/bin/bootstrap.jar</p>
+                </pre>
+
+                <p>然后测试一下能否访问8080端口：</p>
+                <pre class="prettyprint"><code class=" hljs livecodeserver">curl <span class="hljs-keyword">http</span>://<span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">8080</span>   <span class="hljs-comment">#阿里云Linux系统默认localhost地址是0.0.0.0</span></code></pre>
+                <p>如果能看到加载的html文档则说明tomcat安装成功，8080端口也成功开启，恭喜你，到此，配置工作全部完成</p></div>
+    </div>
+    <aside class="right">
+        <div class="rnav">
+            <h2>栏目导航</h2>
+            <ul>
+                <li><a href="/download/" target="_blank">个人博客模板</a></li>
+                <li><a href="/newsfree/" target="_blank">国外Html5模板</a></li>
+                <li><a href="/download/" target="_blank">企业网站模板</a></li>
+                <li><a href="/newsfree/" target="_blank">作品展示</a></li>
+            </ul>
+        </div>
+        <div class="news">
+            <h3>
+                <p>最新<span>模板</span></p>
+            </h3>
+            <ul class="rank">
+                <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
+                <li><a href="/" title="with love for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
+                <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>
+                <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
+                <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
+                <li><a href="/" title="建站流程篇――教你如何快速学会做网站" target="_blank">建站流程篇――教你如何快速学会做网站</a></li>
+                <li><a href="/" title="box-shadow 阴影右下脚折边效果" target="_blank">box-shadow 阴影右下脚折边效果</a></li>
+                <li><a href="/" title="打雷时室内、户外应该需要注意什么" target="_blank">打雷时室内、户外应该需要注意什么</a></li>
+            </ul>
+            <h3 class="ph">
+                <p>点击<span>排行</span></p>
+            </h3>
+            <ul class="paih">
+                <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
+                <li><a href="/" title="withlove for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
+                <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>
+                <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
+                <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
+            </ul>
+        </div>
+        <div class="visitors">
+            <h3><p>转载分享</p></h3>
+        </div>
+        <!-- Baidu Button BEGIN -->
+        <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
+        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script type="text/javascript">
+            document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+        </script>
+        <!-- Baidu Button END -->
+    </aside>
+</article>
+<footer>
+    <p> <a href="http://user.qzone.qq.com/731556624" target="_blank">Design by Liliang </a> 鄂ICP备15021396号</p>
+</footer>
+<script src="js/silder.js"></script>
+</body>
+</html>
