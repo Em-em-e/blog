@@ -1,0 +1,133 @@
+@charset "gb2312";
+/* CSS Document */
+h1.t_nav span{float:right; color:#999}
+h1.t_nav { border-bottom: #F1F1F1 1px solid; font-size: 12px; font-weight: normal; line-height: 40px; height: 40px; }
+h1.t_nav a { width: 100px; display: block; text-align: center; color: #fff; float: left }
+.n1 { background: #5EA51B; }
+.n2 { background: #8BBF5D; }
+.newblog { width: 740px; overflow: hidden; background: url(../images/r_line.jpg) repeat-y right; margin: 10px 0 }
+.newblog h2 { color: #333; font-size: 14px; margin: 20px 0 10px 0; clear:both}
+.markdown_views img{width: 700px;height: 600px;}
+.markdown_views a{color: #F90}
+p.dateview { margin-bottom: 10px }
+p.dateview span { margin: 0 10px 0 0 }
+p.dateview span a { color: #63B120 }
+.newblog figure { float: left; }
+.newblog figure img { width: 170px; border: #EAE6E7 1px solid; padding: 4px; }
+.nlist { width: 530px; float: left; margin: 0 0 0 10px; line-height: 1.9; }
+a.readmore { background: #f90; color: #fff; padding: 5px 10px; float: right; margin: 20px 0 0 0 }
+.line { overflow: hidden; width: 97%; height: 20px; border-bottom: 1px dashed #ccc; }
+.rank li { height: 25px; line-height: 25px; clear: both; padding-left: 5px; overflow: hidden; padding-left: 15px; background: url(../images/li.jpg) no-repeat left center; }
+.rank { margin: 10px 0 }
+.rank li a { color: #333; }
+.paih { background: url(../images/ph.jpg) no-repeat left 8px; margin: 10px 0 }
+.paih li { line-height: 30px; height: 30px; overflow: hidden; padding-left: 24px; border-bottom: #CCC dotted 1px }
+.news h3, .visitors h3 { font-size: 14px; background: url(../images/r_title_bg.jpg) repeat-x center; }
+.news h3 p, .visitors h3 p { background: #fff; width: 70px }
+.news h3 span { color: #65b020 }
+.news h3.ph span { color: #37ccca; }
+.news h3.links span { color: #F17B6B; }
+.news ul { margin-bottom: 20px }
+.news ul li a:hover { text-decoration: underline }
+.visitors ul { margin: 20px 0 }
+.rnav { width: 250px; margin: 20px 0; overflow: hidden; background:url(../images/6167.png) no-repeat left top }
+.rnav h2{ font-size:14px; padding-left:40px; line-height:30px; height:30px; margin-bottom:10px}
+.rnav li { width: 120px; text-align: center; display: inline-block; margin-bottom: 5px; margin-right: 5px; float: left; height: 40px; line-height: 40px }
+.rnav li a { color: #333; display: block; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s;border:#CCC 1px solid}
+
+aside .rnav ul li a:hover { background: rgba(255,255,255,0.2); -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
+.ad{ width:100%; margin:10px auto;}
+.page{ margin:20px 0 0 0; text-align:center; width:100%;overflow: hidden;}
+.page a b {color: #999;}
+.page>b,.page a {margin: 0 2px;height: 26px;line-height: 26px;border-radius: 50%;width: 26px;text-align: center;display: inline-block}
+.page a {margin: 0 2px;height: 26px;line-height: 26px;border-radius: 50%;width: 26px;text-align: center;display: inline-block}/* Õë¶ÔIE6 */
+.page>b,.page a:hover{background: #333;color: #FFF;}
+.page a {color: #F33;border: #999 1px solid;}
+.c_titile {
+    font-size: 25px;
+    margin: 20px 0px;
+    text-align: center;
+    color: #333;
+}
+.box_c {
+    border: 1px dashed #CCC;
+    text-align: center;
+    padding: 5px 0px;
+    margin-right: 30px;
+    color: #999;
+}
+.right {
+    float: right;
+}
+.markdown_views {
+    font-family: "microsoft yahei";
+    font-size: 17px;
+    width: 720px;
+}
+.details .article_content {
+    font: 14px/26px Arial;
+}
+.markdown_views p, .markdown_views pre, .markdown_views pre.prettyprint, .markdown_views blockquote {
+    margin: 0px 0px 1.1em;
+}
+.markdown_views .prettyprint {
+    padding: 5px 5px 5px 60px;
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.markdown_views pre {
+    display: block;
+    padding: 10px;
+    margin: 0px 0px 10.5px;
+    font-size: 14px;
+    line-height: 1.45;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #333;
+    background-color: rgba(128, 128, 128, 0.05);
+    border: 1px solid rgba(128, 128, 128, 0.075);
+    border-radius: 0px;
+}
+.markdown_views code, .markdown_views kbd, .markdown_views pre, .markdown_views samp {
+    font-family: "Source Code Pro",monospace;
+}
+.markdown_views * {
+    box-sizing: border-box;
+}
+.markdown_views pre {
+    font-size: 14px;
+    line-height: 1.45;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #333;
+}
+.markdown_views pre code {
+    padding: 0px;
+    font-size: inherit;
+    color: inherit;
+    white-space: pre;
+    word-wrap: normal;
+    background-color: transparent;
+    border-radius: 0px;
+}
+.hljs-keyword, .method, .hljs-list .hljs-title, .clojure .hljs-built_in, .nginx .hljs-title, .hljs-tag .hljs-title, .setting .hljs-value, .hljs-winutils, .tex .hljs-command, .http .hljs-title, .hljs-request, .hljs-status {
+    color: #008;
+}
+.markdown_views .prettyprint .pre-numbering {
+    position: absolute;
+    width: 50px;
+    background-color: #EEE;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 6px 0px 40px;
+    border-right: 1px solid #DDD;
+    list-style: outside none none;
+    text-align: right;
+}
+
+
+
+
